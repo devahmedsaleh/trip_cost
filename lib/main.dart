@@ -12,10 +12,8 @@ class TripCostApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Trip Cost',
-            textAlign: TextAlign.center,
-          ),
+          title: Text('Trip Cost'),
+          centerTitle: true,
         ),
       ),
     );
