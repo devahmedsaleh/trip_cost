@@ -113,6 +113,10 @@ class _TripFormState extends State<TripForm> {
               ),
             ],
           ),
+          Text(
+            'Total Cost = $totalCost ${currencyMap[selectedCurrency]}',
+            textScaleFactor: AppTheme.textScaleFactor,
+          ),
         ],
       ),
     );
