@@ -40,21 +40,38 @@ class _TripFormState extends State<TripForm> {
       padding: const EdgeInsets.all(AppTheme.padding),
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppTheme.padding / 2),
-            child: TextField(
-              controller: distanceCtrl,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Distance',
-                hintText: 'e.g. 124',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-            ),
+          InputText(
+            label: 'Distance',
+            hint: 'e.g. 124',
+            controller: distanceCtrl,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class InputText extends StatelessWidget {
+  InputText({this.label, this.hint, this.controller});
+
+  final String label;
+  final String hint;
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: AppTheme.padding / 2),
+      child: TextField(
+        controller: controller,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
       ),
     );
   }
