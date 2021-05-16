@@ -7,6 +7,14 @@ class AppTheme {
   static const padding = 10.0;
 }
 
+enum Currency { USD, EURO, POUND }
+
+Map<Currency, String> currencyMap = {
+  Currency.USD: '\$',
+  Currency.EURO: '€',
+  Currency.POUND: '£',
+};
+
 class TripCostApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,6 +44,8 @@ class _TripFormState extends State<TripForm> {
   var distancePerUnitCtrl = TextEditingController();
   var fuelCostCtrl = TextEditingController();
 
+  var selectedCurrency = Currency.USD;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -61,11 +71,34 @@ class _TripFormState extends State<TripForm> {
                   controller: fuelCostCtrl,
                 ),
               ),
+              Expanded(
+                child: Center(
+                  child: DropdownButton(
+                    value: selectedCurrency,
+                    onChanged: onCurrencyChanged,
+                    items: Currency.values
+                        .map(
+                          (c) => DropdownMenuItem<Currency>(
+                            child: Text(
+                              currencyMap[c],
+                              textScaleFactor: AppTheme.textScaleFactor,
+                            ),
+                            value: c,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  void onCurrencyChanged(val) {
+    setState(() => selectedCurrency = val);
   }
 }
 
