@@ -85,32 +85,18 @@ class _TripFormState extends State<TripForm> {
             padding: const EdgeInsets.symmetric(vertical: AppTheme.padding),
             child: Row(
               children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: onSubmit,
-                    child: Text(
-                      'Submit',
-                      textScaleFactor: AppTheme.textScaleFactor,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(AppTheme.padding),
-                    ),
-                  ),
+                Button(
+                  label: 'Submit',
+                  onPressed: onSubmit,
+                  margin: EdgeInsets.only(right: AppTheme.padding),
                 ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: onReset,
-                    child: Text(
-                      'Reset',
-                      textScaleFactor: AppTheme.textScaleFactor,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).buttonColor,
-                      padding: EdgeInsets.all(AppTheme.padding),
-                    ),
+                Button(
+                  label: 'Reset',
+                  onPressed: onReset,
+                  margin: EdgeInsets.only(left: AppTheme.padding),
+                  color: Theme.of(context).buttonColor,
+                  textStyle: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
                   ),
                 ),
               ],
@@ -198,6 +184,43 @@ class DropDownCurrency extends StatelessWidget {
               ),
             )
             .toList(),
+      ),
+    );
+  }
+}
+
+class Button extends StatelessWidget {
+  Button({
+    this.label,
+    this.onPressed,
+    this.margin,
+    this.textStyle,
+    this.color,
+  });
+
+  final String label;
+  final Function onPressed;
+  final TextStyle textStyle;
+  final EdgeInsetsGeometry margin;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: margin,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          child: Text(
+            label,
+            textScaleFactor: AppTheme.textScaleFactor,
+            style: textStyle,
+          ),
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.all(AppTheme.padding),
+            primary: color,
+          ),
+        ),
       ),
     );
   }
