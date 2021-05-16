@@ -72,22 +72,10 @@ class _TripFormState extends State<TripForm> {
                 ),
               ),
               Expanded(
-                child: Center(
-                  child: DropdownButton(
-                    value: selectedCurrency,
-                    onChanged: onCurrencyChanged,
-                    items: Currency.values
-                        .map(
-                          (c) => DropdownMenuItem<Currency>(
-                            child: Text(
-                              currencyMap[c],
-                              textScaleFactor: AppTheme.textScaleFactor,
-                            ),
-                            value: c,
-                          ),
-                        )
-                        .toList(),
-                  ),
+                child: DropDownCurrency(
+                  list: Currency.values,
+                  selected: selectedCurrency,
+                  onChanged: onCurrencyChanged,
                 ),
               ),
             ],
@@ -123,6 +111,35 @@ class InputText extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DropDownCurrency extends StatelessWidget {
+  DropDownCurrency({this.list, this.selected, this.onChanged});
+
+  final List<Currency> list;
+  final Currency selected;
+  final Function onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: DropdownButton(
+        value: selected,
+        onChanged: onChanged,
+        items: list
+            .map(
+              (c) => DropdownMenuItem<Currency>(
+                child: Text(
+                  currencyMap[c],
+                  textScaleFactor: AppTheme.textScaleFactor,
+                ),
+                value: c,
+              ),
+            )
+            .toList(),
       ),
     );
   }
