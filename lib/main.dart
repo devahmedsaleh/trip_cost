@@ -33,6 +33,7 @@ class TripForm extends StatefulWidget {
 
 class _TripFormState extends State<TripForm> {
   var distanceCtrl = TextEditingController();
+  var distancePerUnitCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,11 @@ class _TripFormState extends State<TripForm> {
             label: 'Distance',
             hint: 'e.g. 124',
             controller: distanceCtrl,
+          ),
+          InputText(
+            label: 'Distance Per Unit',
+            hint: 'e.g. 17',
+            controller: distancePerUnitCtrl,
           ),
         ],
       ),
