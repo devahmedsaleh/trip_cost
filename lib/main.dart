@@ -81,37 +81,40 @@ class _TripFormState extends State<TripForm> {
               ),
             ],
           ),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: onSubmit,
-                  child: Text(
-                    'Submit',
-                    textScaleFactor: AppTheme.textScaleFactor,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(AppTheme.padding),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: onReset,
-                  child: Text(
-                    'Reset',
-                    textScaleFactor: AppTheme.textScaleFactor,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColorDark,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: AppTheme.padding),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: onSubmit,
+                    child: Text(
+                      'Submit',
+                      textScaleFactor: AppTheme.textScaleFactor,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(AppTheme.padding),
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).buttonColor,
-                    padding: EdgeInsets.all(AppTheme.padding),
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: onReset,
+                    child: Text(
+                      'Reset',
+                      textScaleFactor: AppTheme.textScaleFactor,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorDark,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).buttonColor,
+                      padding: EdgeInsets.all(AppTheme.padding),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Text(
             'Total Cost = $totalCost ${currencyMap[selectedCurrency]}',
