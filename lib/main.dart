@@ -45,6 +45,7 @@ class _TripFormState extends State<TripForm> {
   var fuelCostCtrl = TextEditingController();
 
   var selectedCurrency = Currency.USD;
+  num totalCost = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,38 @@ class _TripFormState extends State<TripForm> {
               ),
             ],
           ),
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: onSubmit,
+                  child: Text(
+                    'Submit',
+                    textScaleFactor: AppTheme.textScaleFactor,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(AppTheme.padding),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: onReset,
+                  child: Text(
+                    'Reset',
+                    textScaleFactor: AppTheme.textScaleFactor,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).buttonColor,
+                    padding: EdgeInsets.all(AppTheme.padding),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -87,6 +120,24 @@ class _TripFormState extends State<TripForm> {
 
   void onCurrencyChanged(val) {
     setState(() => selectedCurrency = val);
+  }
+
+  void onSubmit() {
+    double distance = double.tryParse(distanceCtrl.text);
+    double distancePerUnit = double.tryParse(distancePerUnitCtrl.text);
+    double fuelCost = double.tryParse(fuelCostCtrl.text);
+
+    if (distance != null && distancePerUnit != null && fuelCost != null) {
+      setState(() => totalCost = distance / distancePerUnit * fuelCost);
+    }
+  }
+
+  void onReset() {
+    distanceCtrl.text = '';
+    distancePerUnitCtrl.text = '';
+    fuelCostCtrl.text = '';
+
+    setState(() => totalCost = 0);
   }
 }
 
