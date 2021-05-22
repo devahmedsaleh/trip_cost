@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:trip_cost/currency.dart';
+import 'package:trip_cost/theme.dart';
+import 'package:trip_cost/widgets/button.dart';
+import 'package:trip_cost/widgets/drop-down.dart';
+import 'package:trip_cost/widgets/input-text.dart';
+
 void main() => runApp(TripCostApp());
-
-class AppTheme {
-  static const textScaleFactor = 1.5;
-  static const padding = 10.0;
-}
-
-enum Currency { USD, EURO, POUND }
-
-Map<Currency, String> currencyMap = {
-  Currency.USD: '\$',
-  Currency.EURO: '€',
-  Currency.POUND: '£',
-};
 
 class TripCostApp extends StatelessWidget {
   @override
@@ -131,98 +124,5 @@ class _TripFormState extends State<TripForm> {
     fuelCostCtrl.text = '';
 
     setState(() => totalCost = 0);
-  }
-}
-
-class InputText extends StatelessWidget {
-  InputText({this.label, this.hint, this.controller});
-
-  final String label;
-  final String hint;
-  final TextEditingController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppTheme.padding / 2),
-      child: TextField(
-        controller: controller,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          labelText: label,
-          hintText: hint,
-          labelStyle: Theme.of(context).textTheme.headline6,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class DropDownCurrency extends StatelessWidget {
-  DropDownCurrency({this.list, this.selected, this.onChanged});
-
-  final List<Currency> list;
-  final Currency selected;
-  final Function onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: DropdownButton<Currency>(
-        value: selected,
-        onChanged: onChanged,
-        items: list
-            .map(
-              (c) => DropdownMenuItem<Currency>(
-                child: Text(
-                  currencyMap[c],
-                  textScaleFactor: AppTheme.textScaleFactor,
-                ),
-                value: c,
-              ),
-            )
-            .toList(),
-      ),
-    );
-  }
-}
-
-class Button extends StatelessWidget {
-  Button({
-    this.label,
-    this.onPressed,
-    this.margin,
-    this.textStyle,
-    this.color,
-  });
-
-  final String label;
-  final Function onPressed;
-  final TextStyle textStyle;
-  final EdgeInsetsGeometry margin;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: margin,
-        child: ElevatedButton(
-          onPressed: onPressed,
-          child: Text(
-            label,
-            textScaleFactor: AppTheme.textScaleFactor,
-            style: textStyle,
-          ),
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(AppTheme.padding),
-            primary: color,
-          ),
-        ),
-      ),
-    );
   }
 }
