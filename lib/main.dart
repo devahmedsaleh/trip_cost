@@ -95,10 +95,7 @@ class _TripFormState extends State<TripForm> {
               ],
             ),
           ),
-          Text(
-            'Total Cost = ${totalCost.toStringAsFixed(2)} ${currencyMap[selectedCurrency]}',
-            textScaleFactor: AppTheme.textScaleFactor,
-          ),
+          buildResult(),
         ],
       ),
     );
@@ -124,5 +121,15 @@ class _TripFormState extends State<TripForm> {
     fuelCostCtrl.text = '';
 
     setState(() => totalCost = 0);
+  }
+
+  Text buildResult() {
+    String result = 'Total Cost = '
+        '${totalCost.toStringAsFixed(2)} ${currencyMap[selectedCurrency]}';
+
+    return Text(
+      result,
+      textScaleFactor: AppTheme.textScaleFactor,
+    );
   }
 }
