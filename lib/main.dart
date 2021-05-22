@@ -151,6 +151,7 @@ class InputText extends StatelessWidget {
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
+          labelStyle: Theme.of(context).textTheme.headline6,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
           ),
