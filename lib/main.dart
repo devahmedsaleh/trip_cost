@@ -103,7 +103,7 @@ class _TripFormState extends State<TripForm> {
             ),
           ),
           Text(
-            'Total Cost = $totalCost ${currencyMap[selectedCurrency]}',
+            'Total Cost = ${totalCost.toStringAsFixed(2)} ${currencyMap[selectedCurrency]}',
             textScaleFactor: AppTheme.textScaleFactor,
           ),
         ],
