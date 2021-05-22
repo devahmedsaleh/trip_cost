@@ -170,7 +170,7 @@ class DropDownCurrency extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: DropdownButton(
+      child: DropdownButton<Currency>(
         value: selected,
         onChanged: onChanged,
         items: list
